@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SolarCoffee.Data\SolarCoffee.Data.csproj" />
+    <ProjectReference Include="..\SolarCoffee.Test\SolarCoffee.Test.csproj" />
+  </ItemGroup>
+
 </Project>
