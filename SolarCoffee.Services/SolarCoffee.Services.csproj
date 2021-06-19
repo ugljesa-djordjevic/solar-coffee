@@ -9,4 +9,8 @@
     <ProjectReference Include="..\SolarCoffee.Test\SolarCoffee.Test.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Order\" />
+  </ItemGroup>
+
 </Project>
