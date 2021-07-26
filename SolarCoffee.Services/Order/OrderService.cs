@@ -15,15 +15,15 @@ namespace SolarCoffee.Services.Order
     {
         private readonly SolarDbContext _db;
         private readonly ILogger<OrderService> _logger;
-        private readonly IProductService _products;
-        private readonly IInventoryService _inventory;
+        private readonly IProductService _productService;
+        private readonly IInventoryService _inventoryService;
 
         public OrderService(SolarDbContext dbContext, ILogger<OrderService> logger, IProductService products, IInventoryService inventory)
         {
             _db = dbContext;
             _logger = logger;
-            _products = products;
-            _inventory = inventory;
+            _productService = products;
+            _inventoryService = inventory;
         }
 
         /// <summary>
@@ -39,11 +39,11 @@ namespace SolarCoffee.Services.Order
 
             foreach(var item in order.SalesOrderItems)
             {
-                item.Products = _products.GetProductById(item.Products.Id);
+                item.Products = _productService.GetProductById(item.Products.Id);
                 item.Quantity = item.Quantity;
-                var inventoryId = _inventory.GetProductsId(item.Products.Id).Id;
+                var inventoryId = _inventoryService.GetProductsId(item.Products.Id).Id;
 
-                _inventory.UpdateUnitsAvailable(inventoryId, -item.Quantity);
+                _inventoryService.UpdateUnitsAvailable(inventoryId, -item.Quantity);
             }
 
             try

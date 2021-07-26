@@ -96,7 +96,7 @@ namespace SolarCoffee.Services.Inventory
                     CreateSnapshot(inventory);
                 }
 
-                catch(Exception ex)
+                catch
                 {
                     _logger.LogError("Error creating inventory snapshot");
                 }

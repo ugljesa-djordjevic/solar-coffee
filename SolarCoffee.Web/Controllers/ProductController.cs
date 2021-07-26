@@ -21,13 +21,21 @@ namespace SolarCoffee.Web.Controllers
             _productService = productService;
         }
 
-        [HttpGet("api/product")]
+        [HttpGet("/api/product")]
         public ActionResult GetProduct()
         {
             _logger.LogInformation("Getting all products");
             var products = _productService.GetAllProducts();
             var productViewModels = products.Select(ProductMapper.SerializeProductModel);
             return Ok(productViewModels);
+        }
+
+        [HttpPatch("/api/product/{id}")]
+        public ActionResult ArchiveProduct(int id)
+        {
+            _logger.LogInformation("Archiving product");
+            var archiveProduct = _productService.ArchiveProduct(id);
+            return Ok(archiveProduct);
         }
     }
 }
